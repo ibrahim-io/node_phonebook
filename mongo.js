@@ -10,8 +10,7 @@ if(process.argv.length < 5){
 
 const password = process.argv[2]
 
-const url = `mongodb+srv://fullstack:${password}@cluster0.rm5rhro.mongodb.net/personsApp?retryWrites=true&w=majority`
-
+const url = process.env.MONGO_URI
 personSchema = mongoose.Schema({
   name: String,
   number: String
