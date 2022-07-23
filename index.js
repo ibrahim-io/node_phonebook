@@ -24,16 +24,14 @@ app.get('/info', (request, response) => {
 })
 
 app.get('/api/persons/:id', (request, response) => {
-  const id = Number(request.params.id)
-  const person = persons.find(person => person.id === id)
-
-  if(!person) {
-    response.status(404).json({
-      error: 'invalid id'
-    }).end()
-  }
-
-  response.json(person)
+  Person.findById(request.params.id).then(person => {
+    if(!person) {
+      response.status(404).json({
+        error: 'invalid id'
+      }).end()
+    }
+    response.json(person)
+  })
 })
 
 app.delete('/api/persons/:id', (request, response) => {
